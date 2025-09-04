@@ -18,6 +18,14 @@ public class Cliente {
 		this.direccion = direccion;
 		this.telefono = telefono;
 	}
+	
+	
+
+	public Cliente(int cedula, String nombres, String apellidos, String direccion, String telefono) {
+		super();
+	}
+
+
 
 	public int getIdcliente() {
 		return idcliente;
