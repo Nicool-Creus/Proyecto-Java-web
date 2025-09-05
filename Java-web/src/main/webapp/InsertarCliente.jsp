@@ -1,10 +1,6 @@
-<%@ page import="controlador.Conexion"%>
-<%@ page import="java.sql.*" %> 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="modelo.Cliente"%>
-<%@ page import="DAO.ClienteServlet"%>
-
+<%@ page import="controlador.Conexion, java.sql.*, DAO.ClienteServlet, modelo.Cliente"%>
     
 <!DOCTYPE html>
 <html>

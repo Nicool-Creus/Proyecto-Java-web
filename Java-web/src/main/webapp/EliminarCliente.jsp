@@ -9,8 +9,10 @@
 
  
 <%
-    // Obtener la lista de todos los clientes
+	// Instancia del DAO para acceder a la BD
     ClienteDAO clienteDAO = new ClienteDAO();
+
+ 	// Se obtiene la lista de todos los clientes
     List<Cliente> listaClientes = clienteDAO.listarClientes(); 
     
     // Obtener el cliente específico si se ha seleccionado uno
@@ -77,6 +79,7 @@
 <body>
    
     <div class="container mt-5">
+    	<!-- Botón para volver al inicio -->
         <a href="Index.jsp" class="btn btn-primary back-btn">
             <i class="fas fa-arrow-left me-1"></i> Volver al Inicio
         </a>
@@ -88,11 +91,13 @@
                         <h5 class="card-title m-0"><i class="fas fa-user-times me-2"></i>Eliminar Cliente</h5>
                     </div>
                     <div class="card-body">
+                    	<!-- Mensaje de advertencia -->
                         <div class="alert alert-danger">
                             <i class="fas fa-exclamation-triangle me-2"></i>
                             <strong>Advertencia:</strong> Esta acción no se puede deshacer. Se eliminarán permanentemente los datos del cliente.
                         </div>
                         
+                        <!-- Primer formulario: seleccionar cliente -->
                         <form method="get" action="EliminarCliente.jsp" class="mb-4">
                             <label for="idCliente" class="form-label">Seleccione el Cliente a Eliminar</label>
                             <div class="input-group">
@@ -109,7 +114,10 @@
                             </div>
                         </form>
                         
+                        <!-- Si ya se seleccionó un cliente -->
                         <% if (cliente != null) { %>
+                        
+                        <!-- Mostrar la información del cliente -->
                         <div class="card mb-4">
                             <div class="card-body">
                                 <h5 class="card-title">Información del Cliente</h5>
@@ -122,6 +130,7 @@
                             </div>
                         </div>
                         
+                        <!-- Eliminar cliente -->
                         <form action="ClienteServlet" method="post">
                             <input type="hidden" name="action" value="eliminar">
                             <input type="hidden" name="idCliente" value="<%= cliente.getIdcliente() %>">

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %> 
 <%@ page import="controlador.Conexion"%>
+<%@ page import="java.sql.*" %> 
 <%@ page import="modelo.Cliente"%>
 <%@ page import="DAO.ClienteDAO"%>
-<%@ page import="java.util.List"%>
+
     
 <%
     Cliente cliente = null;
@@ -78,6 +78,7 @@
                         <h5 class="card-title m-0"><i class="fas fa-search me-2"></i>Consultar Cliente por ID</h5>
                     </div>
                     <div class="card-body">
+                    
                         <form method="get" action="ConsultarCliente.jsp" class="mb-4">
                             <label for="idCliente" class="form-label">ID del Cliente</label>
                             <div class="input-group">

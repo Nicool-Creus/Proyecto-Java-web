@@ -7,8 +7,10 @@
 <%@ page import="java.util.List"%>
 
 <%
-    // Obtener la lista de todos los clientes
+	//Instancia del DAO para acceder a la BD
     ClienteDAO clienteDAO = new ClienteDAO();
+
+	// Se obtiene la lista de todos los clientes
     List<Cliente> listaClientes = clienteDAO.listarClientes(); 
     
     // Obtener el cliente específico si se ha seleccionado uno
@@ -91,10 +93,15 @@
                             </div>
                         </form>
                         
+                        <!-- Segundo formulario: solo aparece si ya se seleccionó un cliente -->
                         <% if (cliente != null) { %>
                         <form action="ClienteServlet" method="post">
+                        
+                        	<!-- Acción de actualizar -->
                             <input type="hidden" name="action" value="actualizar">
                             <input type="hidden" name="idCliente" value="<%= cliente.getIdcliente() %>">
+                            
+                            <!-- Datos editables -->
                             <div class="row mb-3">
                             	<div class="col-md-6">
                                     <label for="cedula" class="form-label">Cédula</label>

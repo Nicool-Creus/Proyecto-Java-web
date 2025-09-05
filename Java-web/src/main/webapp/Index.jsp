@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="DAO.ClienteServlet"%>
+
 <!DOCTYPE html>
 
 <html>
@@ -67,7 +67,6 @@
 </head>
 <body>
 
-    <!-- Main Content -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
@@ -76,7 +75,7 @@
             </div>
         </div>
 
-        <!-- Gestión de Clientes Card -->
+        <!-- Gestión de Clientes -->
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -102,7 +101,7 @@
                                         <div class="card-body text-center">
                                             <i class="fas fa-user-edit fa-3x mb-3 text-primary"></i>
                                             <h5 class="card-title">Actualizar Cliente</h5>
-                                            <p class="card-text">Modificar datos de clients existentes</p>
+                                            <p class="card-text">Modificar datos de clientes existentes</p>
                                         </div>
                                     </div>
                                 </a>
@@ -129,17 +128,34 @@
                                     </div>
                                 </a>
                             </div>
+                            <div class="col-md-6 mb-4">
+                                <a href="ListaClientes.jsp" class="text-decoration-none">
+                                    <div class="card feature-card h-100">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-file fa-3x mb-3 text-info"></i>
+                                            <h5 class="card-title">Lista de clientes</h5>
+                                            <p class="card-text">Ver la lista completa de clientes</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <a href="ClienteServlet?action=generarPDF" target="_blank" class="text-decoration-none">
+                                    <div class="card feature-card h-100">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-file-pdf fa-3x mb-3 text-danger"></i>
+                                            <h5 class="card-title">Descargar PDF de clientes</h5>
+                                            <p class="card-text">PDF de todos los clientes</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <form action="ClienteServlet" method="get" target="_blank">
-	    <input type="hidden" name="action" value="generarPDF">
-	    <button type="submit">Descargar PDF</button>
-	</form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

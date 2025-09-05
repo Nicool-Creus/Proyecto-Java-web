@@ -13,15 +13,17 @@ import jakarta.mail.Session;
 
 public class Correo {
 
+	// Método para enviar correos
 	public void EnviarCorreo(String asunto, Object mensaje) throws MessagingException {
 
 		// Configuración del servidor SMTP
 		String host = "smtp.gmail.com";
 		String port = "587";
 
-		final String username = "sebastianalarcon441@gmail.com"; // correo
-		final String password = "yimd csqq sxqx jhpt"; // clave de aplicacion
+		final String username = "sebastianalarcon441@gmail.com"; // Correo del remitente
+		final String password = "yimd csqq sxqx jhpt"; // clave de aplicacion de gmail
 
+		// Propiedades de conexión
 		Properties props = new Properties();
 		
 		props.put("mail.smtp.auth", "true");
@@ -40,11 +42,13 @@ public class Correo {
 		try {
 			// Crear el mensaje
 			Message message = new MimeMessage(session);
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("creusnaz.5@gmail.com")); //Destinatario
-			message.setSubject(asunto); // Asunto
-			message.setText((String) mensaje); //Cuerpo del mesaje
 			
-			// Enviar
+			// Destinatario
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("creusnaz.5@gmail.com"));
+			message.setSubject(asunto); // Asunto
+			message.setText((String) mensaje); // Cuerpo del mesaje
+			
+			// Enviar correo
 			Transport.send(message);
 			System.out.println("Correo enviado correctamente");
 		} catch (MessagingException e) {
