@@ -66,7 +66,7 @@
                     <h5 class="card-title m-0"><i class="fas fa-users me-2"></i> Lista de Clientes</h5>
                 </div>
                 <div class="card-body">
-
+ 
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
