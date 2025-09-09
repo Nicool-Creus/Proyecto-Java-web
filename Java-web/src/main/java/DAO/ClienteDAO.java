@@ -16,7 +16,7 @@ public class ClienteDAO {
     public void insertarCliente(Cliente cliente) {
     	
     	// Sentencia SQL
-        String sql = "INSERT INTO tblcliente (cedula, nombres, apellidos, direccion, telefono)"
+        String sql = "INSERT INTO tblcliente (cedula, nombres, apellidos, direccion, telefono, correo)"
                    + "VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = new Conexion().conectarDB();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -27,6 +27,7 @@ public class ClienteDAO {
             ps.setString(3, cliente.getApellidos());
             ps.setString(4, cliente.getDireccion());
             ps.setString(5, cliente.getTelefono());
+            ps.setString(6, cliente.getCorreo());
 
             // Ejecutar la sentencia (INSERT)
             ps.executeUpdate();
@@ -55,7 +56,8 @@ public class ClienteDAO {
                             rs.getString("nombres"),
                             rs.getString("apellidos"),
                             rs.getString("direccion"),
-                            rs.getString("telefono")
+                            rs.getString("telefono"),
+                            rs.getString("correo")
                     );
                 }
             }
@@ -67,7 +69,7 @@ public class ClienteDAO {
 
     // ACTUALIZAR
     public void actualizarCliente(Cliente cliente) {
-        String sql = "UPDATE tblcliente SET cedula = ?, nombres = ?, apellidos = ?, direccion = ?, telefono = ?"
+        String sql = "UPDATE tblcliente SET cedula = ?, nombres = ?, apellidos = ?, direccion = ?, telefono = ?, correo = ?"
                    + "WHERE idcliente = ?";
         try (Connection conn = new Conexion().conectarDB();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -78,7 +80,8 @@ public class ClienteDAO {
             ps.setString(3, cliente.getApellidos());
             ps.setString(4, cliente.getDireccion());
             ps.setString(5, cliente.getTelefono());
-            ps.setInt(6, cliente.getIdcliente());
+            ps.setString(7, cliente.getCorreo());
+            ps.setInt(8, cliente.getIdcliente());
 
             // Ejecutar UPDATE
             ps.executeUpdate();
@@ -106,8 +109,8 @@ public class ClienteDAO {
     
     // Listar clientes
     public List<Cliente> listarClientes() throws SQLException {
-        List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT * FROM tblCliente";
+        List<Cliente> listaClientes = new ArrayList<>();
+        String sql = "SELECT * FROM tblcliente";
 
         try (Connection conn = new Conexion().conectarDB();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -121,15 +124,16 @@ public class ClienteDAO {
                     rs.getString("nombres"),
                     rs.getString("apellidos"),
                     rs.getString("direccion"),
-                    rs.getString("telefono")
+                    rs.getString("telefono"),
+                    rs.getString("correo")
                 );
                 // Se agrega a la lista
-                clientes.add(cliente);
+                listaClientes.add(cliente);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
         }
-        return clientes; // Retorna la lista de clientes
+        return listaClientes; // Retorna la lista de clientes
     }
 }

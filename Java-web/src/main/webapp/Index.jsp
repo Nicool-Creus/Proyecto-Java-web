@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import="DAO.ClienteServlet"%>
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/616/616408.png" type="image/png">
 <title>Index</title>
 </head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -67,6 +68,7 @@
 </head>
 <body>
 
+    <!-- Main Content -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
@@ -75,7 +77,7 @@
             </div>
         </div>
 
-        <!-- Gestión de Clientes -->
+        <!-- Gestión de Clientes Card -->
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -129,7 +131,7 @@
                                 </a>
                             </div>
                             <div class="col-md-6 mb-4">
-                                <a href="ListaClientes.jsp" class="text-decoration-none">
+                                <a href="ClienteServlet?action=lista" class="text-decoration-none">
                                     <div class="card feature-card h-100">
                                         <div class="card-body text-center">
                                             <i class="fas fa-file fa-3x mb-3 text-info"></i>

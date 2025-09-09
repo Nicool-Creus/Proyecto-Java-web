@@ -8,8 +8,10 @@ public class Cliente {
 	public String apellidos;
 	public String direccion;
 	public String telefono;
-	
-	public Cliente(int idcliente, int cedula, String nombres, String apellidos, String direccion, String telefono) {
+	public String correo;
+
+	public Cliente(int idcliente, int cedula, String nombres, String apellidos, String direccion, String telefono,
+			String correo) {
 		super();
 		this.idcliente = idcliente;
 		this.cedula = cedula;
@@ -17,11 +19,12 @@ public class Cliente {
 		this.apellidos = apellidos;
 		this.direccion = direccion;
 		this.telefono = telefono;
+		this.correo = correo;
 	}
-	
-	
 
-	public Cliente(int cedula, String nombres, String apellidos, String direccion, String telefono) {
+
+
+	public Cliente(int cedula, String nombres, String apellidos, String direccion, String telefono, String correo) {
 		super();
 	}
 
@@ -73,6 +76,14 @@ public class Cliente {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 	
 }

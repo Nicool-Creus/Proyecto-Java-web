@@ -1,19 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="controlador.Conexion"%>
 <%@ page import="java.sql.*" %> 
+<%@ page import="controlador.Conexion"%>
 <%@ page import="modelo.Cliente"%>
-<%@ page import="DAO.ClienteDAO"%>
-
-    
-<%
-    Cliente cliente = null;
-    if (request.getParameter("idCliente") != null) {
-        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-        ClienteDAO clienteDAO = new ClienteDAO();
-        cliente = clienteDAO.consultarCliente(idCliente);
-    }
-%>
     
 <!DOCTYPE html>
 <html>
@@ -79,18 +68,30 @@
                     </div>
                     <div class="card-body">
                     
-                        <form method="get" action="ConsultarCliente.jsp" class="mb-4">
+                    <!-- Formulario al iingresar el id -->
+                        <form action="ClienteServlet" method="get" class="mb-4">
+                            <input type="hidden" name="action" value="consultar">
                             <label for="idCliente" class="form-label">ID del Cliente</label>
                             <div class="input-group">
-                                <input type="number" class="form-control" id="idCliente" name="idCliente" 
-                                    value="<%= request.getParameter("idCliente") != null ? request.getParameter("idCliente") : "" %>" 
-                                    placeholder="Ingrese el ID del cliente" required>
-                                <button class="btn btn-primary" type="submit">Buscar</button>
+                                <input type="number" class="form-control" id="idCliente" name="idCliente" required>
+                                <button type="submit" class="btn btn-info text-white">Buscar</button>
                             </div>
                         </form>
                         
-                        <% if (cliente != null) { %>
-                        <div class="table-responsive">
+                        <%
+                        	Cliente cliente = (Cliente) request.getAttribute("cliente");
+                        	String error = (String) request.getAttribute("error");
+
+                        	if (error != null) { 
+                        %>
+                        <div class="alert alert-danger">
+                        	<i class="fas fa-exclamation-circle me-2"></i> <%= error %>
+                        </div>
+                        
+                        <%
+                			} else if (cliente != null) {
+            			%>
+                            <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -114,10 +115,11 @@
                                 </tbody>
                             </table>
                         </div>
+
                         <% } else if (request.getParameter("idCliente") != null) { %>
                         <div class="alert alert-warning" role="alert">
                             No se encontró ningún cliente con el ID <%= request.getParameter("idCliente") %>
-                        </div>
+                        </div> 
                         <% } %>
                     </div>
                 </div>

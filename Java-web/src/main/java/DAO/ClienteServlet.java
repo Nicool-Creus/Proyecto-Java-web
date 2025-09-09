@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -68,23 +69,29 @@ public class ClienteServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			response.setContentType("text/plain");
+			response.getWriter().println("Error en consultar cliente: " + e.getMessage());
 		}
+	
 		
 		
 		// Si la acción es generarPDF, se invoca el método privado
 		if ("generarPDF".equalsIgnoreCase(action)) {
 	        generarPDF(response);
 	        return;
-	    } 
+	    }  
 	    	
 	    	// Lista los clientes y los envía al JSP
-	    	/*try {
-	            java.util.List<Cliente> listarClientes = daoCliente.listarClientes();
+	    	try {
+	    		if ("lista".equals(action)) {
+	            List<Cliente> listarClientes = daoCliente.listarClientes();
 	            request.setAttribute("listaClientes", listarClientes);
 	            request.getRequestDispatcher("ListaClientes.jsp").forward(request, response);
-	        } catch (SQLException e) {
+	    		
+	    		}
+	    	} catch (SQLException e) {
 	            throw new ServletException("Error al listar clientes", e);
-	        }*/
+	    	}
 
 	}
 	
@@ -217,6 +224,7 @@ public class ClienteServlet extends HttpServlet {
             Correo correo = new Correo();
             
             try {
+            	
                 correo.EnviarCorreo("creusnaz.5@gmail.com", "Nuevo Cliente Registrado");
 			} catch (Exception e) {
 				
@@ -249,8 +257,17 @@ public class ClienteServlet extends HttpServlet {
 			
 			// Eliminar cliente según el ID
 			int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-            daoCliente.eliminarCliente(idCliente);
+            
+			Cliente cliente = daoCliente.consultarCliente(idCliente);
 			
+			if (cliente != null){
+				String correoCliente = cliente.get
+			}
+			
+			daoCliente.eliminarCliente(idCliente);
+			
+            
+            
             Correo eCorreo = new Correo();
             
             try {
