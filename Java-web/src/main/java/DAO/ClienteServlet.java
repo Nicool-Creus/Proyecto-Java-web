@@ -40,7 +40,23 @@ public class ClienteServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	
+    /* Se instancia un objeto "daoCliente" de la clase ClienteDAO, el cual permite acceder a las operaciones de la base de datos relacionadas con los clientes que son insertar, actualizar,
+     * eliminar, consultar y listar.
+     * Luego, se define el método protegido "doGet", que procesa las solicitudes HTTP 
+     * de tipo GET enviadas desde el navegador o formularios JSP. Según el parámetro "action" recibido en el request, se pueden realizar las diferentes operaciones:
+     * 
+     * consultar": obtiene el ID del cliente desde el request, consulta al cliente en la base de datos usando ClienteDAO y guarda en el request el objeto cliente o un mensaje de error si no existe.
+     * Finalmente, redirige al JSP "ConsultarCliente.jsp" para mostrar el resultado.
+     * 
+     * generarPDF: llama al método privado "generarPDF()", que se encarga de crear un documento en formato PDF con los datos de los clientes, que será mostrado directamente en el navegador.
+     * 
+     * lista: obtiene todos los clientes desde la base de datos con "ClienteDAO", los guarda en el request como "listaClientes" y reenvía la información al JSP "ListaClientes.jsp"
+     * para visualizar la lista completa.
+     * 
+     * En caso de error al consultar o listar clientes, se captura la excepción y se 
+     * envía el mensaje de error al navegador o al JSP correspondiente.
+     */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Recibe la acción desde el formulario
@@ -94,6 +110,16 @@ public class ClienteServlet extends HttpServlet {
 	    	}
 
 	}
+	
+	/* El método "generarPDF" genera un archivo PDF con la lista de clientes. 
+     * Usa HttpServletResponse para enviar el PDF al navegador. 
+     * Se conecta a la base de datos con la clase Conexion. 
+     * Configura la respuesta HTTP como "application/pdf". 
+     * Crea un documento iText con una tabla de 5 columnas. 
+     * Agrega encabezados con "agregarCeldaEncabezado()" y llena filas con datos de la base de datos. 
+     * Inserta la tabla en el documento y lo envía al navegador. 
+     * Maneja errores y asegura el cierre de recursos.
+     */
 	
 	// Método para generar el PDF
 	private void generarPDF(HttpServletResponse response) {
@@ -181,7 +207,8 @@ public class ClienteServlet extends HttpServlet {
 	        
 	    }
 
-
+		// El método auxiliar "agregarCeldaEncabezado": agrega una celda de encabezado con estilo (negrita, centrado, fondo gris) a la tabla del PDF.
+	     
 		// Método auxiliar para los encabezados de la tabla
 		private void agregarCeldaEncabezado(PdfPTable tabla, String texto) {
 		    PdfPCell celda = new PdfPCell(new Paragraph(texto, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
@@ -257,16 +284,7 @@ public class ClienteServlet extends HttpServlet {
 			
 			// Eliminar cliente según el ID
 			int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-            
-			Cliente cliente = daoCliente.consultarCliente(idCliente);
-			
-			if (cliente != null){
-				String correoCliente = cliente.get
-			}
-			
 			daoCliente.eliminarCliente(idCliente);
-			
-            
             
             Correo eCorreo = new Correo();
             
