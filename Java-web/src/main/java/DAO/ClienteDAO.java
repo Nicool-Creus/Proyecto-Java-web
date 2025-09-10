@@ -24,7 +24,7 @@ public class ClienteDAO {
 	 * 
 	 * actualizarCliente: actualiza los campos de un cliente existente e identifica el registro por idcliente.
 	 * 
-	 * eliminarCliente: elimina el registro correspondiente al id en la tabla
+	 * eliminarCliente: elimina el registro correspondiente al id en la tabla 
 	 * 
 	 * listarClientes: recupera todos los registros de "tblcliente" y crea objetos "Cliente" por cada fila y los agrega a una lista.
 	 * Retorna la lista completa de clientes
