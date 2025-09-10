@@ -12,11 +12,29 @@ import modelo.Cliente;
 
 public class ClienteDAO {
 	
+	/* En la clase "ClienteDAO": se implementa las operaciones CRUD para la entidad "Cliente" utilizando JDBC y la clase "Conexion".
+	 * Cada método usa consultas SQL preparadas para evitar inyección de código y gestionar los datos.
+	 * 
+	 * Operaciones:
+	 * 
+	 * insertarCliente:inserta un nuevo registro en la tabla tblcliente.
+	 * Reemplaza los parámetros (?) con los valores del objeto Cliente.
+	 * 
+	 * consultarCliente: busca un cliente por su id y si existe, retorna un objeto "Cliente" con los datos, si no, retorna null.
+	 * 
+	 * actualizarCliente: actualiza los campos de un cliente existente e identifica el registro por idcliente.
+	 * 
+	 * eliminarCliente: elimina el registro correspondiente al id en la tabla
+	 * 
+	 * listarClientes: recupera todos los registros de "tblcliente" y crea objetos "Cliente" por cada fila y los agrega a una lista.
+	 * Retorna la lista completa de clientes
+	 * */
+	
 	// INSERTAR
     public void insertarCliente(Cliente cliente) {
     	
     	// Sentencia SQL
-        String sql = "INSERT INTO tblcliente (cedula, nombres, apellidos, direccion, telefono, correo)"
+        String sql = "INSERT INTO tblcliente (cedula, nombres, apellidos, direccion, telefono)"
                    + "VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = new Conexion().conectarDB();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -27,7 +45,6 @@ public class ClienteDAO {
             ps.setString(3, cliente.getApellidos());
             ps.setString(4, cliente.getDireccion());
             ps.setString(5, cliente.getTelefono());
-            ps.setString(6, cliente.getCorreo());
 
             // Ejecutar la sentencia (INSERT)
             ps.executeUpdate();
@@ -56,8 +73,7 @@ public class ClienteDAO {
                             rs.getString("nombres"),
                             rs.getString("apellidos"),
                             rs.getString("direccion"),
-                            rs.getString("telefono"),
-                            rs.getString("correo")
+                            rs.getString("telefono")
                     );
                 }
             }
@@ -69,7 +85,7 @@ public class ClienteDAO {
 
     // ACTUALIZAR
     public void actualizarCliente(Cliente cliente) {
-        String sql = "UPDATE tblcliente SET cedula = ?, nombres = ?, apellidos = ?, direccion = ?, telefono = ?, correo = ?"
+        String sql = "UPDATE tblcliente SET cedula = ?, nombres = ?, apellidos = ?, direccion = ?, telefono = ?"
                    + "WHERE idcliente = ?";
         try (Connection conn = new Conexion().conectarDB();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -80,7 +96,6 @@ public class ClienteDAO {
             ps.setString(3, cliente.getApellidos());
             ps.setString(4, cliente.getDireccion());
             ps.setString(5, cliente.getTelefono());
-            ps.setString(7, cliente.getCorreo());
             ps.setInt(8, cliente.getIdcliente());
 
             // Ejecutar UPDATE
@@ -124,8 +139,7 @@ public class ClienteDAO {
                     rs.getString("nombres"),
                     rs.getString("apellidos"),
                     rs.getString("direccion"),
-                    rs.getString("telefono"),
-                    rs.getString("correo")
+                    rs.getString("telefono")
                 );
                 // Se agrega a la lista
                 listaClientes.add(cliente);
