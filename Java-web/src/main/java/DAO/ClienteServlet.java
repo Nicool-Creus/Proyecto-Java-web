@@ -219,6 +219,21 @@ public class ClienteServlet extends HttpServlet {
 		    tabla.addCell(celda);
 		}
 
+		/* El método "doPost" gestiona las peticiones POST recibidas desde los formularios JSP. 
+	     * Obtiene el parámetro "action" para identificar la operación a realizar y si no hay acción, redirige al Index con un error. 
+	     * Según el valor de "action", se ejecutará uno de los casos:
+	     * 
+	     * insertar: captura los datos del formulario y crea un objeto Cliente, después inserta el cliente en la base de datos mediante "ClienteDAO".
+	     * Envía una notificación por correo usando la clase "Correo".
+	     * 
+	     * actualizar: obtiene los datos a modificar junto con el "idCliente", después se crea un objeto "Cliente" actualizado y lo guarda en la base de datos.
+	     * Envía un correo notificando la actualización.
+	     * 
+	     * eliminar: recupera el idCliente desde el formulario, después elimina el registro correspondiente en la base de datos.
+	     * Envía un correo notificando la eliminación.
+	     * 
+	     * Al final, redirige siempre al "Index.jsp".
+	     */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String action = request.getParameter("action");
