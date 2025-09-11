@@ -8,7 +8,7 @@ public class Cliente {
 	public String apellidos;
 	public String direccion;
 	public String telefono;
-
+ 
 	public Cliente(int idcliente, int cedula, String nombres, String apellidos, String direccion, String telefono) {
 		super();
 		this.idcliente = idcliente;

@@ -20,6 +20,6 @@ public class TestConexion {
 			System.out.println("No conectado a la BD");
 		}
 
-	}
+	} 
 
 }

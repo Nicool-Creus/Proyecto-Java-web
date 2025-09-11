@@ -56,7 +56,7 @@ public class ClienteServlet extends HttpServlet {
      * En caso de error al consultar o listar clientes, se captura la excepción y se 
      * envía el mensaje de error al navegador o al JSP correspondiente.
      */
-    
+     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Recibe la acción desde el formulario

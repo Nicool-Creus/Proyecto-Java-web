@@ -11,7 +11,7 @@ import controlador.Conexion;
 import modelo.Cliente;
 
 public class ClienteDAO {
-	
+	 
 	/* En la clase "ClienteDAO": se implementa las operaciones CRUD para la entidad "Cliente" utilizando JDBC y la clase "Conexion".
 	 * Cada método usa consultas SQL preparadas para evitar inyección de código y gestionar los datos.
 	 * 

@@ -29,4 +29,4 @@ public class Conexion {
 		return connection; //Retorna la conexión abierta con la BD
 	}
 
-}
+} 

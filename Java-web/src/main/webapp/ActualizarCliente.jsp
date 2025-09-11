@@ -20,7 +20,7 @@
         cliente = clienteDAO.consultarCliente(idCliente); 
     }
 %>
-
+ 
 <!DOCTYPE html>
 <html>
 <head>

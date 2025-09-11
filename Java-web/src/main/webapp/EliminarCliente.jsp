@@ -20,7 +20,7 @@
     if (request.getParameter("idCliente") != null) {
         int idCliente = Integer.parseInt(request.getParameter("idCliente"));
         cliente = clienteDAO.consultarCliente(idCliente); 
-    }
+    } 
 %>
 
 <!DOCTYPE html>
