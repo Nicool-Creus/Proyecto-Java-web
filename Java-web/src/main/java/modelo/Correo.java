@@ -11,6 +11,11 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.Session;
 
+/* La clase "Correo" permite envíar correos electrónicos utilizando el servidor SMTP a través de gmail usando la librería jakarta mail.
+ * Esta clase contiene el método "EnviarCorreo" que recibe parámetros pero no retorna y configura las propiedades SMTP que son el host, puerto, TLS y autenticación.
+ * Autentica al remitente con usuario y clave de aplicación.
+ * Construye un objeto "MimeMessage" con destinatario fijo, asunto y cuerpo del mensaje.
+ * Envía el correo mediante "Transport.send()" y después muestra en consola si el envío fue exitoso o si hubo error.*/
 public class Correo {
 
 	// Método para enviar correos
@@ -21,7 +26,7 @@ public class Correo {
 		String port = "587";
 
 		final String username = "sebastianalarcon441@gmail.com"; // Correo del remitente
-		final String password = "yimd csqq sxqx jhpt"; // clave de aplicacion de gmail
+		final String password = "yimd csqq sxqx jhpt"; // clave de la aplicación de gmail
 
 		// Propiedades de conexión
 		Properties props = new Properties();
@@ -55,7 +60,6 @@ public class Correo {
 			e.printStackTrace();
 			System.out.println("Error al enviar correo: " + e.getMessage());
 		}
-		
 		
 
 	}
